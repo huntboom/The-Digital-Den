@@ -8,6 +8,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: '#1a1a1a',
+    color: 'white',
+    padding: theme.spacing(2)
+  },
   form: {
     display: 'flex',
     alignItems: 'center',
@@ -72,3 +77,4 @@ const BookFinder = () => {
 };
 
 export default BookFinder;
+
