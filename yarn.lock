@@ -1233,6 +1233,22 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@gltf-transform/core@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@gltf-transform/core/-/core-2.5.1.tgz#d84ba1a02f956276ab055fc670cfb0771466e3fd"
+  integrity sha512-Ah4TVzQtlUpEOJPJovgobbviec7og7NaSo9f+Lg0kJCk3Wwjl++FuDHKCDYEB+CQL8CoLpfB62+8t+NH5buedg==
+  dependencies:
+    gl-matrix "~3.4.3"
+    property-graph "^0.2.6"
+
+"@gltf-transform/extensions@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@gltf-transform/extensions/-/extensions-2.5.1.tgz#cae4cde16cf7b6ab0548a22cde681320d6fb5570"
+  integrity sha512-fn+Mkh5XoaWYU/BUa5BvU5T1u7Bj8o2z2mDGhTKSzoGgNG2RO6tGrniESBEuDYQCtDx9HJLs0YOlziBx4zFbiw==
+  dependencies:
+    "@gltf-transform/core" "^2.5.1"
+    ktx-parse "^0.4.5"
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"
@@ -4906,6 +4922,11 @@ get-symbol-description@^1.0.0:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
+gl-matrix@~3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/gl-matrix/-/gl-matrix-3.4.3.tgz#fc1191e8320009fd4d20e9339595c6041ddc22c9"
+  integrity sha512-wcCp8vu8FT22BnvKVPjXa/ICBWRq/zjFfdofZy1WSpQZpphblv12/bOQLBC1rMM7SGOFS9ltVmKOHil5+Ml7gA==
+
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -7784,6 +7805,11 @@ prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
+
+property-graph@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/property-graph/-/property-graph-0.2.6.tgz#add988a436745936d4b2ae19f747f2556296c828"
+  integrity sha512-QiBHxNZlwIarbkxsqCY688aP1ANbwtoQFBYgTZopQ0Bvku6/EYp3H4KH0ygxkhWQbJv5DEONspLy1rHi5xIycg==
 
 proxy-addr@~2.0.7:
   version "2.0.7"

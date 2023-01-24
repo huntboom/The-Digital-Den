@@ -12,7 +12,18 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.readingroom {
+  display:flex;
+  /* flex-direction: */
+  outline: 1px solid red !important;
+  flex-direction:row;
+  height:100vh;
+}
+.bookfinder {
+  margin-left:2em;
 
+
+}
 .bg-image {
   background-image: url('./Trinitylibrary.jpg');
   background-size: cover;
@@ -46,7 +57,8 @@
 }
 
 body {
-  background-color: #4E1D04;
+  background-image: url('./librarywall.jpg');
   color: white;
+  background-size: cover
 }
 

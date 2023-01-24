@@ -10,11 +10,12 @@ export default function Book2(props) {
   const { actions } = useAnimations(animations, group);
   useFrame(() => {
     if (ref.current.position.z < 1) {
-      ref.current.position.z += 0.01;
+      ref.current.position.z += 0.1;
     }
   });
+  // <mesh onClick={(e) => actions.jump.play()} />
   return (
-    <group ref={ref} onPointerOver={() => (ref.current.position.z = 3.8)} position={[0, 0.7, 3.4]} {...props} dispose={null}>
+    <group ref={ref} onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)}  {...props} position={props.position} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="Root" rotation={[4.7, 0, 0]}>
@@ -43,3 +44,4 @@ export default function Book2(props) {
 }
 
 useGLTF.preload("/simple_animated_book.glb");
+

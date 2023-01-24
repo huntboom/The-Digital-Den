@@ -52,7 +52,7 @@ const BookFinder = () => {
   };
 
   return (
-    <div>
+    <div className="bookfinder">
       <h2>Books</h2>
       <form className={classes.form} onSubmit={getSearch}>
         <TextField

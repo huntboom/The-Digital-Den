@@ -1,0 +1,27 @@
+ //Okay so I need to have the json request made, then it needs to check for books with 
+  //"ebook_access": "no_ebook",
+  //"has_fulltext": true,
+  //"public_scan_b": true,
+  //and to ONLY display titles that have text, a scan, or an ebook version. 
+  //I should be able to use the api to request the cover of the book and 
+  //then use that as a texture for the front of the book. 
+  //Let's start simple, I want to do the following:
+  //Write a component that fetches the book txt using the name of the book and the API
+  //Place multiple books on the shelves
+  //Get the animation for the book opening working
+  //Populate the pages with the text metadata. 
+  //Add the cover of the book to the texture.
+  //okay let's see if from the title of a book request, I can get access to the full text:
+  //GO!
+    //Okay so I want title.ebooks[0]==full and then to use the 
+  //Okay I can take the genre search, check if ebook_access": "public"==true and then if it is, I then make another request using the OOLID.
+    //So I want my component to only display titles if they have public ebook access. 
+    OkAYYYY Figured it out. I take the ia of the title, and from that I can use this https://openlibrary.org/dev/docs/bookurls
+    to get the first page. 
+
+    So I make the request, example:https://openlibrary.org/search.json?q=subject:mystery&limit=10 
+    check if "ebook_access": "public", then if it is, I either take the first result 
+    of ia[0] as my identifier, 
+    or preferably "lending_identifier_s": "widowlerougenove00gabo", and use that
+    https://archive.org/download/{identifier}#page/title
+    to get the cover of the book I want.
