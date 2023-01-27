@@ -38,16 +38,15 @@ const About = () => {
 
   return (
     <div className={classes.root}>
-      <Container component="main" className={classes.main} maxWidth="md">
-        <Typography variant="h2" component="h1" gutterBottom className={classes.text}>
+      <Container component="main" className='main' maxWidth="md">
+        <Typography variant="h2" component="h1" gutterBottom className='scale-up-center'>
           Welcome To The Digital Den
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom className={classes.text}>
-          The Digital Den is a virtual environment where users can find and read books in a 3D
+          The Digital Den is a virtual space where users can find and read books in a 3D
           environment. Users can explore a variety of books from different genres and authors, and
-          can even customize their own virtual library. The Digital Den also offers a variety of
-          interactive features, such as the ability to chat with other readers and create book
-          clubs.
+          can even customize their own virtual library. The Digital Den seeks to recreate that
+          magical feeling of looking for a book in library or bookstore.
         </Typography>
         <Button variant="contained" color="primary" className={classes.button}>
           Enter The Reading Room
