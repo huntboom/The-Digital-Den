@@ -25,3 +25,5 @@
     or preferably "lending_identifier_s": "widowlerougenove00gabo", and use that
     https://archive.org/download/{identifier}#page/title
     to get the cover of the book I want.
+
+    Okay so now I need to create an object where the title of the book is mapped along with the cover.
