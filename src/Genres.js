@@ -33,7 +33,7 @@ const GenreList = () => {
           // console.log('true')
           const bookIdentifier = element.lending_identifier_s
           // console.log(bookIdentifier)
-          const bookCover = 'https://archive.org/download/' + bookIdentifier + '/page/title.jpg'
+          const bookCover = 'https://archive.org/download/' + bookIdentifier + '/page/cover.jpg'
           coversTitles[index] = {
             title: element.title,
             url: bookCover,

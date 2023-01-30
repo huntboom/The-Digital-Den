@@ -1,9 +1,16 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber';
+import image from './bookcover.jpg';
+import * as THREE from 'three';
+
+
+
 
 export default function Book3(props) {
   const { nodes, materials, animations } = useGLTF("/simple_animated_book.glb");
+  const texture = new THREE.TextureLoader().load(image);
+  const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
   const ref = useRef();
   useFrame(() => {
     if (ref.current.position.z < 1) {
@@ -18,7 +25,7 @@ export default function Book3(props) {
             castShadow
             receiveShadow
             geometry={nodes.Book_0.geometry}
-            material={materials.Base}
+            material={materialWithTexture}
           />
         </group>
       </group>
