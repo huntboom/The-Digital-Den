@@ -4,9 +4,6 @@ import { useFrame } from '@react-three/fiber';
 import image from './bookcover.jpg';
 import * as THREE from 'three';
 
-
-
-
 export default function Book3(props) {
   const { nodes, materials, animations } = useGLTF("/simple_animated_book.glb");
   const texture = new THREE.TextureLoader().load(image);
@@ -17,15 +14,20 @@ export default function Book3(props) {
       ref.current.position.z += 0.1;
     }
   });
+
+  const geometry = nodes.Book_0.geometry;
+  // geometry.setDrawRange(0, 90); // only draw the first 4 faces of the geometry
   return (
-    <group ref={ref} onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)}  {...props} dispose={null}>
+    <group ref={ref} /*  onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)}  */ {...props} dispose={null}>
+      {console.log(materials.Base)}
       <group rotation={[-Math.PI / 1, 0, 0]}>
-        <group scale={[0.85, 1, 0.81]}>
+        <group scale={[0.85, 1, 0.6]}>
           <mesh
             castShadow
             receiveShadow
-            geometry={nodes.Book_0.geometry}
-            material={materialWithTexture}
+            geometry={geometry}
+            material={materials.Base}
+            // material={materialWithTexture}
           />
         </group>
       </group>
@@ -34,3 +36,4 @@ export default function Book3(props) {
 }
 
 useGLTF.preload("/simple_animated_book.glb");
+
