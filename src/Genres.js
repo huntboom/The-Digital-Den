@@ -40,6 +40,7 @@ const GenreList = () => {
             key: index
           };
           console.log(coversTitles)
+          console.log(coversTitles['2']["title"])
           // console.log(bookCover)
           bookCovers.push(bookCover)
           // console.log(bookCovers)
