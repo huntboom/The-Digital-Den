@@ -12,31 +12,35 @@ import React, { useRef } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import GenreList from './Genres.js';
 import BookGroup from './BookGroup.js';
-function App() {
+import { Provider } from 'react-redux';
+import store from './store';
 
+function App() {
   return (
-    <div className="bg-image">
-      <Header />
-      <About />
-      <Library />
-      <GenreList />
-      <div className="readingroom">
-        <Canvas>
-          <group position={[0, -0.4, 0.5]}>
-            <OrbitControls />
-            {/* <Shelf position={[0, 0, 3.25]} /> */}
-            <ambientLight />
-            <Suspense>
-              <BookGroup position={[0, 0.7, 2.4]} />
-              {/* <Book3 scale={0.02} position={[0, 0.7, 3.4]} /> */}
-              {/* <Book3 scale={0.02} position={[0.04, 0.7, 3.4]} /> */}
-              {/* <Book3 scale={0.02} position={[0.08, 0.7, 3.4]} /> */}
-              {/* <Book3 scale={0.02} position={[0.12, 0.7, 3.4]} /> */}
-            </Suspense>
-          </group>
-        </Canvas>
+    <Provider store={store}>
+      <div className="bg-image">
+        <Header />
+        <About />
+        <Library />
+        <GenreList />
+        <div className="readingroom">
+          <Canvas>
+            <group position={[0, -0.4, 0.5]}>
+              <OrbitControls />
+              {/* <Shelf position={[0, 0, 3.25]} /> */}
+              <ambientLight />
+              <Suspense>
+                <BookGroup position={[0, 0.7, 2.4]} />
+                {/* <Book3 scale={0.02} position={[0, 0.7, 3.4]} /> */}
+                {/* <Book3 scale={0.02} position={[0.04, 0.7, 3.4]} /> */}
+                {/* <Book3 scale={0.02} position={[0.08, 0.7, 3.4]} /> */}
+                {/* <Book3 scale={0.02} position={[0.12, 0.7, 3.4]} /> */}
+              </Suspense>
+            </group>
+          </Canvas>
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }
 

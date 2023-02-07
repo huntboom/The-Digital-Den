@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import store from './store';
+import { updateCoverTitles } from './actions';
 const bookCovers = []
 const coversTitles = {};
 const GenreList = () => {
@@ -39,6 +40,7 @@ const GenreList = () => {
             url: bookCover,
             key: index
           };
+          store.dispatch(updateCoverTitles(coversTitles));
           console.log(coversTitles)
           console.log(coversTitles['2']["title"])
           // console.log(bookCover)
