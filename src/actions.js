@@ -1,6 +1,6 @@
-export const updateCoverTitles = (coverTitles) => {
+export const updateCoverTitles = (coversTitles) => {
   return {
     type: 'UPDATE_COVER_TITLES',
-    payload: coverTitles
+    payload: coversTitles
   };
 };

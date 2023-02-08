@@ -38,7 +38,6 @@ const GenreList = () => {
           coversTitles[index] = {
             title: element.title,
             url: bookCover,
-            key: index
           };
           store.dispatch(updateCoverTitles(coversTitles));
           console.log(coversTitles)

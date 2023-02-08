@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  coverTitles: []
+  coversTitles: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const rootReducer = (state = initialState, action) => {
     case 'UPDATE_COVER_TITLES':
       return {
         ...state,
-        coverTitles: action.payload
+        coversTitles: action.payload
       };
     default:
       return state;
