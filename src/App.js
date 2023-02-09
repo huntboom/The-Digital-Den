@@ -13,7 +13,9 @@ import { OrbitControls } from '@react-three/drei';
 import GenreList from './Genres.js';
 import BookGroup from './BookGroup.js';
 import { Provider } from 'react-redux';
+import CompleteShelf from './CompleteShelf.js';
 import store from './store';
+
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
               {/* <Shelf position={[0, 0, 3.25]} /> */}
               <ambientLight />
               <Suspense>
-                <BookGroup position={[0, 0.7, 2.4]} />
+                <CompleteShelf position={[0, 0.7, 2.4]} />
                 {/* <Book3 scale={0.02} position={[0, 0.7, 3.4]} /> */}
                 {/* <Book3 scale={0.02} position={[0.04, 0.7, 3.4]} /> */}
                 {/* <Book3 scale={0.02} position={[0.08, 0.7, 3.4]} /> */}

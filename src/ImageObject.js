@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useFrame } from '@react-three/fiber';
 import image from './bookcover.jpg';
 import * as THREE from 'three';
+import { useSelector } from 'react-redux';
 
 export default function ImageObject(props) {
   const texture = new THREE.TextureLoader().load(image);
