@@ -7,10 +7,16 @@ import { useSelector } from 'react-redux';
 export default function CompleteShelf(props) {
   const group = useRef();
   const coversTitles = useSelector(state => state.coversTitles);
-  const title = coversTitles[0] && coversTitles[0]["title"] ? coversTitles[0]["title"] : "BookTitle";
+  const coversTitlesArray = Object.values(coversTitles);
+
   return (
     <group position={props.position} ref={group}>
-      <BookGroup title={title} />
+      <BookGroup />
+      {console.log(coversTitlesArray)}
+      {coversTitlesArray.map((title, i) => {
+        const titleStr = title && title["title"] ? title["title"] : "BookTitle";
+        return <BookGroup key={i} title={titleStr} position={[i * 0.05, 0, 0]} />
+      })}
     </group>
   );
 }
