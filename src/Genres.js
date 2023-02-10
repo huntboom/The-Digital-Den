@@ -48,11 +48,11 @@ const GenreList = () => {
       <button onClick={handleMysteryClick}>Mystery</button>
       <button onClick={handleScienceFictionClick}>Science Fiction</button>
       <h2>{genre} Books</h2>
-      <ul>
-        {bookList.map((title, index) => (
-          <li key={index}>{title}</li>
-        ))}
-      </ul>
+      {/* <ul> */}
+      {/*   {bookList.map((title, index) => ( */}
+      {/*     <li key={index}>{title}</li> */}
+      {/*   ))} */}
+      {/* </ul> */}
     </div>
   );
 };

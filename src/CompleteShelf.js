@@ -8,13 +8,12 @@ export default function CompleteShelf(props) {
   const group = useRef();
   const coversTitles = useSelector(state => state.coversTitles);
   const coversTitlesArray = Object.values(coversTitles);
-
   return (
     <group position={props.position} ref={group}>
-      <BookGroup />
       {console.log(coversTitlesArray)}
       {coversTitlesArray.map((title, i) => {
         const titleStr = title && title["title"] ? title["title"] : "BookTitle";
+        // const bookCovers = cover && cover["url"] ? cover["url"] : "cover";
         return <BookGroup key={i} title={titleStr} position={[i * 0.05, 0, 0]} />
       })}
     </group>
