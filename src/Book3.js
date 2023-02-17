@@ -18,7 +18,6 @@ export default function Book3(props) {
   });
   return (
     <group ref={ref} /*  onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)}  */ {...props} dispose={null}>
-      {console.log(materials.Base)}
       <group rotation={[-Math.PI / 1, 0, 0]}>
         <group scale={[0.85, 1, 0.6]}>
           <mesh

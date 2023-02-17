@@ -10,9 +10,10 @@ export default function BookGroup(props) {
   const ref = useRef();
   return (
     <group position={props.position} ref={ref} onPointerOver={() => (ref.current.position.z = 0)} onPointerOut={() => (ref.current.position.z = -0.1)} >
-      <ImageObject scale={0.08} position={[0.021, 0, 1.0001]} />
+      <ImageObject scale={0.08} url={props.url} position={[0.021, 0, 1.0001]} />
       <Book3 scale={0.02} />
       <TextObject title={props.title} position={[0, 0.05, 1.1016]} />
     </group>
   );
 }
+

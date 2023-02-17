@@ -28,7 +28,7 @@ function App() {
         <div className="readingroom">
           <Canvas camera={{ position: [0, 0.3, 4.5] }}>
             <group position={[0, -0.4, 0.5]}>
-              <OrbitControls />
+              {/* <OrbitControls /> */}
               <Shelf position={[0, 0, 3.25]} />
               <ambientLight />
               <Suspense>

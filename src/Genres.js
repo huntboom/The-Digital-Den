@@ -34,7 +34,6 @@ const GenreList = () => {
             url: bookCover,
           };
           store.dispatch(updateCoverTitles(coversTitles));
-          console.log(coversTitles);
           i++;
         }
       });
