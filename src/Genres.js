@@ -27,8 +27,11 @@ const GenreList = () => {
       let i = 0;
       bookinfo.forEach((element) => {
         if (element.ebook_access == "public") {
-          const bookIdentifier = element.lending_identifier_s
-          const bookCover = 'https://archive.org/download/' + bookIdentifier + '/page/cover.jpg'
+          console.log(element)
+          //const bookIdentifier = element.lending_identifier_s
+          const coverIdentifier = element.cover_i
+          //https://covers.openlibrary.org/b/id/12547191-M.jpg
+          const bookCover = 'https://covers.openlibrary.org/b/id/' + coverIdentifier + '-M.jpg'
           coversTitles[i] = {
             title: element.title,
             url: bookCover,
