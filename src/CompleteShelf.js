@@ -10,7 +10,7 @@ export default function CompleteShelf(props) {
   const coversTitlesArray = Object.values(coversTitles);
   return (
     <group position={props.position} ref={group}>
-      {coversTitlesArray.map((title, i, url) => {
+      {coversTitlesArray.map((title, i) => {
         const titleStr = title && title["title"] ? title["title"] : "BookTitle";
         const urlStr = title && title["url"] ? title["url"] : "https://archive.org/download/napoleon00chesuoft/page/cover.jpg";
         // const bookCovers = cover && cover["url"] ? cover["url"] : "cover";

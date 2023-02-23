@@ -5,7 +5,6 @@ import Header from './Header';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense } from 'react';
 import Shelf from './Shelf.js';
-import Book2 from './Book2.js';
 import Book3 from './Book3.js';
 import About from './About.js';
 import React, { useRef } from 'react';
@@ -28,8 +27,8 @@ function App() {
         <div className="readingroom">
           <Canvas camera={{ position: [0, 0.3, 4.5] }}>
             <group position={[0, -0.4, 0.5]}>
-              {/* <OrbitControls /> */}
-              <Shelf position={[0, 0, 3.25]} />
+              <OrbitControls />
+              {/* <Shelf position={[0, 0, 3.25]} /> */}
               <ambientLight />
               <Suspense>
                 <CompleteShelf position={[-0.5, 0.7, 2.4]} />
