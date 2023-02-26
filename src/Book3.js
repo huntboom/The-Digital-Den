@@ -6,6 +6,9 @@ import * as THREE from 'three';
 export default function Book3(props) {
   const { nodes, materials, animations } = useGLTF("/simple_animated_book.glb");
   const ref = useRef();
+  const textureUrl = props.url;
+  const texture = new THREE.TextureLoader().load(textureUrl);
+  const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
   useFrame(() => {
     if (ref.current.position.z < 1) {
       ref.current.position.z += 0.1;
@@ -20,7 +23,6 @@ export default function Book3(props) {
     <group ref={ref} /*  onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)}  */ {...props} dispose={null}>
       <group rotation={[-Math.PI / 1, 0, 0]}>
         <group scale={[0.85, 1, 0.6]}>
-          {console.log(props.url)}
           <mesh
             castShadow
             receiveShadow

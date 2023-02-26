@@ -25,9 +25,9 @@ const GenreList = () => {
       const data = await response.json();
       const bookinfo = data.docs;
       let i = 0;
+      console.log(bookinfo)
       bookinfo.forEach((element) => {
         if (element.ebook_access == "public") {
-          console.log(element)
           //const bookIdentifier = element.lending_identifier_s
           const coverIdentifier = element.cover_i
           //https://covers.openlibrary.org/b/id/12547191-M.jpg
