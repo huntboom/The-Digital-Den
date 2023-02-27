@@ -49,7 +49,7 @@ export default function BookGroup(props) {
   };
 
   return (
-    <group position={props.position} ref={ref} onClick={handleClick}
+    <group position={props.position} rotation={props.rotation} ref={ref} onClick={handleClick}
       onPointerOver={() => {
         // ref.current.position.z = 0.0;
         // console.log("Book Group Position: ", ref.current.position);

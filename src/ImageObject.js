@@ -7,6 +7,7 @@ import axios from "axios";
 export default function ImageObject(props) {
   const textureUrl = props.url;
   const texture = new THREE.TextureLoader().load(textureUrl);
+  texture.encoding = THREE.sRGBEncoding;
   const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
   const ref = useRef();
   const geometry = new THREE.PlaneGeometry(2.5, 5.2, 1, 1);
