@@ -21,21 +21,41 @@ import TextObject from './BookTitle.js';
 export default function BookGroup(props) {
   const group = useRef();
   const ref = useRef();
-  const handleClick = () => {
-    ref.current.rotation.y = Math.PI / -2;
-    ref.current.position.z = 1.1;
-    ref.current.position.x = 1.5;
-    console.log("Position:", ref.current.position);
-    console.log("Rotation:", ref.current.rotation);
+  const handleSearch = async () => {
+    const response = await fetch(`https://gutendex.com/books/?search=${props.title}`);
+    const data = await response.json();
+    console.log(data)
+    const firstResult = data.results[0]
+    console.log(firstResult)
+    const bookId = firstResult.id
+    console.log(bookId)
+    // const bookUrl = 'https://www.gutenberg.org/files/' + bookId + "/" + bookId + "-0.txt"
+    const bookUrl = '/api/files/' + bookId + "/" + bookId + "-0.txt"
+    console.log(bookUrl)
+    const bookUrlData = await fetch(bookUrl)
+    const bookUrlResponse = await bookUrlData.text();
+    console.log(bookUrlResponse)
+    //https://www.gutenberg.org/files/1342/1342-0.txt
   };
+
+  const handleClick = () => {
+    // ref.current.rotation.y = Math.PI / -2;
+    // ref.current.position.z = 1.1;
+    // ref.current.position.x = 1.5;
+    // console.log("Position:", ref.current.position);
+    // console.log("Rotation:", ref.current.rotation);
+    console.log(props.title)
+    handleSearch()
+  };
+
   return (
     <group position={props.position} ref={ref} onClick={handleClick}
       onPointerOver={() => {
-        ref.current.position.z = 0.0;
-        console.log("Book Group Position: ", ref.current.position);
+        // ref.current.position.z = 0.0;
+        // console.log("Book Group Position: ", ref.current.position);
         // console.log("Book Group Rotation: ", ref.current.rotation);
       }}
-      onPointerOut={() => (ref.current.position.z = -0.1)}
+    // onPointerOut={() => (ref.current.position.z = -0.1)}
     >
       <ImageObject scale={0.08} url={props.url} position={[0.021, 0, 1.0001]} />
       <Book3 scale={0.02} />
