@@ -28,11 +28,20 @@ export default function BookGroup(props) {
     const firstResult = data.results[0]
     console.log(firstResult)
     const bookId = firstResult.id
-    console.log(bookId)
+    // const trueUrl = firstResult.formats["text/plain"]
+    // const urlSplit = trueUrl.split('.org');
+    //https://www.gutenberg.org/cache/epub/5230/pg5230.txt
+    //https://www.gutenberg.org/ebooks/5230.txt.utf-8
+    // const pathName = urlSplit[1];
+    // console.log("trueUrl: " + trueUrl)
+    // console.log("bookId: " + bookId)
+    // console.log("pathName: " + pathName)
     // const bookUrl = 'https://www.gutenberg.org/files/' + bookId + "/" + bookId + "-0.txt"
-    const bookUrl = '/api/files/' + bookId + "/" + bookId + "-0.txt"
+    // const bookUrl = '/api/files/' + bookId + "/" + bookId + ".txt"
+    // should be the url for the plaintext version:
+    const bookUrl = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '.txt';
     console.log(bookUrl)
-    const bookUrlData = await fetch(bookUrl)
+    const bookUrlData = await fetch(bookUrl, { timeout: 600000 })
     const bookUrlResponse = await bookUrlData.text();
     console.log(bookUrlResponse)
     //https://www.gutenberg.org/files/1342/1342-0.txt
