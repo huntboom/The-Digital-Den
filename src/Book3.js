@@ -9,7 +9,6 @@ export default function Book3(props) {
   const textureUrl = props.url;
   const texture = new THREE.TextureLoader().load(textureUrl);
   const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
-  console.log(animations)
   useFrame(() => {
     if (ref.current.position.z < 1) {
       ref.current.position.z += 0.1;

@@ -1,17 +1,25 @@
 import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 
 export default function Book2(props) {
   const ref = useRef();
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("/simple_animated_book.glb");
   const { actions } = useAnimations(animations, group);
-
-  useEffect(() => {
+  const clip = animations[0]
+  const duration = clip.duration
+  console.log(clip)
+  function handleClick(actions) {
+    actions.Demo.setDuration(3.33 / 2);
+    actions.Demo.setLoop('LoopOnce');
+    actions.Demo.setLoop(THREE.LoopOnce, 1);
+    console.log(actions.Demo);
+    actions.Demo.clampWhenFinished = true;
     actions.Demo.play();
-  }, [actions.Demo]);
-
+    actions.Demo.halt(3.33);
+  }
   useFrame(() => {
     if (ref.current.position.z < 1) {
       ref.current.position.z += 0.1;
@@ -19,7 +27,9 @@ export default function Book2(props) {
   });
 
   return (
-    <group ref={ref} onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)} {...props} position={props.position} dispose={null}>
+    <group ref={ref} onClick={() => handleClick(actions)} {...props} position={props.position} dispose={null}>
+      {console.log(animations)}
+      {console.log(clip)}
       <group ref={group} name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="Root" rotation={[4.7, 0, 0]}>
