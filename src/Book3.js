@@ -4,11 +4,8 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export default function Book3(props) {
-  const { nodes, materials, animations } = useGLTF("/simple_animated_book.glb");
+  const { nodes } = useGLTF("/simple_animated_book.glb");
   const ref = useRef();
-  const textureUrl = props.url;
-  const texture = new THREE.TextureLoader().load(textureUrl);
-  const materialWithTexture = new THREE.MeshBasicMaterial({ map: texture });
   useFrame(() => {
     if (ref.current.position.z < 1) {
       ref.current.position.z += 0.1;

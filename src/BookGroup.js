@@ -1,12 +1,9 @@
 import React, { useRef } from "react";
-import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 import ImageObject from './ImageObject.js';
 import Book3 from './Book3.js';
 import TextObject from './BookTitle.js';
 
 export default function BookGroup(props) {
-  const group = useRef();
   const ref = useRef();
   const handleSearch = async () => {
     const response = await fetch(`https://gutendex.com/books/?search=${props.title}`);
@@ -36,13 +33,13 @@ export default function BookGroup(props) {
   };
 
   return (
-    <group position={props.position} rotation={props.rotation} ref={ref} onClick={handleClick}
+    <group position={props.position} scale={0.8} rotation={props.rotation} ref={ref} onClick={handleClick}
       onPointerOver={() => {
-        // ref.current.position.z = 0.0;
+        ref.current.position.z = 1.3;
         // console.log("Book Group Position: ", ref.current.position);
         // console.log("Book Group Rotation: ", ref.current.rotation);
       }}
-    // onPointerOut={() => (ref.current.position.z = -0.1)}
+      onPointerOut={() => (ref.current.position.z = 1.05)}
     >
       <ImageObject scale={0.08} url={props.url} position={[0.021, 0, 1.0001]} />
       <Book3 scale={0.02} />
