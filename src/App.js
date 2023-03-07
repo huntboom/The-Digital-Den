@@ -1,4 +1,5 @@
 import './App.css';
+import { Vector3 } from 'three';
 import Library from './OpenLibrary.js';
 import Header from './Header';
 import { Canvas } from '@react-three/fiber';
@@ -22,6 +23,7 @@ function App() {
   const cameraControlRef = useRef(null);
   const handleButtonClick = () => {
     console.log(controlsRef.current.object.position);
+    console.log(controlsRef.current.target.toArray());
   };
 
   return (
@@ -32,11 +34,46 @@ function App() {
         <SearchBooks />
         <Library />
         <GenreList />
-        <button onClick={handleButtonClick}>Log Camera Position</button>
+        <button onClick={() => {
+          // cameraControlRef.current?.rotate(DEG45, 0, true);
+          // cameraControlRef.current?.lookInDirectionOf(0, 0, 0, true);
+          console.log("Camera Position: ", cameraControlRef.current._camera.position);
+          const positionsArray = Object.values(cameraControlRef.current._camera.position);
+          const targetsArray = Object.values(cameraControlRef.current._target);
+          console.log(positionsArray)
+          console.log("Camera Direction: ", cameraControlRef.current._target);
+          console.log(targetsArray)
+          const totalArray = positionsArray.concat(targetsArray)
+          console.log(totalArray)
+          // console.log(cameraControlRef.current);
+          // cameraControlRef.current?.truck(1, 0, true);
+          // cameraControlRef.current?.setPosition(10.39068940540094, 2.7940987949977103, 6.896609012413881);
+          // const newPosition = new Vector3(10.39068940540094, 2.7940987949977103, 6.896609012413881);
+          // const newLookAt = new Vector3(0, 0, 0); // Change this to the point you want the camera to look at
+          // cameraControlRef.current?.setPosition(newPosition);
+          // cameraControlRef.current?.setTarget(5, 5, 5);
+        }}
+        >Log Camera Position</button>
         <button
           type="button"
           onClick={() => {
-            cameraControlRef.current?.rotate(DEG45, 0, true);
+            // cameraControlRef.current?.rotate(DEG45, 0, true);
+            // cameraControlRef.current?.lookInDirectionOf(0, 0, 0, true);
+            const startingPosition = [0, 3.061616997868383e-16, 5, 0, 0, 0]
+            const tablePosition = [9.866951217695544, 1.3633927438927493, 10.087911154448468, 9.389651880401367, -8.050703368574377, 3.747178294570645]
+            // console.log("Camera Position: ", cameraControlRef.current._camera.position);
+            // console.log("Camera Direction: ", cameraControlRef.current._target);
+            // console.log(cameraControlRef.current);
+            // cameraControlRef.current?.setLookAt(...startingPosition, true);
+            cameraControlRef.current?.setLookAt(...startingPosition, true);
+            // cameraControlRef.current?.setLookAt(0, 3.061616997868383e-16, 5, 0, 0, 0, true);
+            // cameraControlRef.current?.truck(1, 0, true);
+            // cameraControlRef.current?.setPosition(10.39068940540094, 2.7940987949977103, 6.896609012413881);
+            // const newPosition = new Vector3(10.39068940540094, 2.7940987949977103, 6.896609012413881);
+            // const newLookAt = new Vector3(0, 0, 0); // Change this to the point you want the camera to look at
+            // cameraControlRef.current?.setPosition(newPosition);
+            // cameraControlRef.current?.setTarget(5, 5, 5);
+            console.log(cameraControlRef.current);
             console.log("rotation attempted")
           }}
         >
