@@ -40,11 +40,10 @@ function App() {
           console.log("Camera Position: ", cameraControlRef.current._camera.position);
           const positionsArray = Object.values(cameraControlRef.current._camera.position);
           const targetsArray = Object.values(cameraControlRef.current._target);
-          console.log(positionsArray)
           console.log("Camera Direction: ", cameraControlRef.current._target);
-          console.log(targetsArray)
           const totalArray = positionsArray.concat(targetsArray)
           console.log(totalArray)
+          console.log(cameraControlRef.current)
           // console.log(cameraControlRef.current);
           // cameraControlRef.current?.truck(1, 0, true);
           // cameraControlRef.current?.setPosition(10.39068940540094, 2.7940987949977103, 6.896609012413881);
@@ -57,33 +56,28 @@ function App() {
         <button
           type="button"
           onClick={() => {
-            // cameraControlRef.current?.rotate(DEG45, 0, true);
-            // cameraControlRef.current?.lookInDirectionOf(0, 0, 0, true);
             const startingPosition = [0, 3.061616997868383e-16, 5, 0, 0, 0]
-            const tablePosition = [9.866951217695544, 1.3633927438927493, 10.087911154448468, 9.389651880401367, -8.050703368574377, 3.747178294570645]
-            // console.log("Camera Position: ", cameraControlRef.current._camera.position);
-            // console.log("Camera Direction: ", cameraControlRef.current._target);
-            // console.log(cameraControlRef.current);
-            // cameraControlRef.current?.setLookAt(...startingPosition, true);
+            const tablePosition = [9.907485701063523, 2.401641595604553, 6.682113081311899, 9.906062023266644, -5.667110874530187, 6.530531933354925];
             cameraControlRef.current?.setLookAt(...startingPosition, true);
-            // cameraControlRef.current?.setLookAt(0, 3.061616997868383e-16, 5, 0, 0, 0, true);
-            // cameraControlRef.current?.truck(1, 0, true);
-            // cameraControlRef.current?.setPosition(10.39068940540094, 2.7940987949977103, 6.896609012413881);
-            // const newPosition = new Vector3(10.39068940540094, 2.7940987949977103, 6.896609012413881);
-            // const newLookAt = new Vector3(0, 0, 0); // Change this to the point you want the camera to look at
-            // cameraControlRef.current?.setPosition(newPosition);
-            // cameraControlRef.current?.setTarget(5, 5, 5);
             console.log(cameraControlRef.current);
-            console.log("rotation attempted")
           }}
         >
-          rotate theta 45deg
+          Return to Starting Position
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            const tablePosition = [9.907485701063523, 2.401641595604553, 6.682113081311899, 9.906062023266644, -5.667110874530187, 6.530531933354925];
+            cameraControlRef.current?.setLookAt(...tablePosition, true);
+            console.log(cameraControlRef.current);
+          }}
+        >
+          Go to Table Position
         </button>
         <div className="readingroom">
           <Canvas /* camera={[0, 0.3, 4.5]} */>
             <CameraControls ref={cameraControlRef} />
             <group position={[0, -0.4, 0.5]}>
-              <OrbitControls ref={controlsRef} />
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
               <Suspense>
