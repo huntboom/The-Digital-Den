@@ -76,7 +76,7 @@ function App() {
         </button>
         <div className="readingroom">
           <Canvas /* camera={[0, 0.3, 4.5]} */>
-            <CameraControls ref={cameraControlRef} />
+            <CameraControls ref={cameraControlRef} smoothTime={1} />
             <group position={[0, -0.4, 0.5]}>
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
