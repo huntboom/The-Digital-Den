@@ -21,6 +21,13 @@ function App() {
   const controlsRef = useRef();
   // const cameraControlRef = useRef < CameraControls | null > (null);
   const cameraControlRef = useRef(null);
+  const [isTablePosition, setIsTablePosition] = useState(false);
+  const handleTablePosition = () => {
+    setIsTablePosition(true);
+  };
+  const handleStartingPosition = () => {
+    setIsTablePosition(false);
+  };
   const handleButtonClick = () => {
     console.log(controlsRef.current.object.position);
     console.log(controlsRef.current.target.toArray());
@@ -60,6 +67,7 @@ function App() {
             const tablePosition = [9.907485701063523, 2.401641595604553, 6.682113081311899, 9.906062023266644, -5.667110874530187, 6.530531933354925];
             cameraControlRef.current?.setLookAt(...startingPosition, true);
             console.log(cameraControlRef.current);
+            handleStartingPosition();
           }}
         >
           Return to Starting Position
@@ -67,23 +75,26 @@ function App() {
         <button
           type="button"
           onClick={() => {
-            const tablePosition = [9.907485701063523, 2.401641595604553, 6.682113081311899, 9.906062023266644, -5.667110874530187, 6.530531933354925];
+            // const tablePosition = [9.907485701063523, 2.401641595604553, 6.682113081311899, 9.906062023266644, -5.667110874530187, 6.530531933354925];
+            const tablePosition = [10.065679205124855, 0.2355104039775453, 6.013026193563245, 10.064639804059142, -5.6553378868500745, 5.902359575685355];
             cameraControlRef.current?.setLookAt(...tablePosition, true);
             console.log(cameraControlRef.current);
+            handleTablePosition();
+            console.log("handleTablePosition: " + isTablePosition)
           }}
         >
           Go to Table Position
         </button>
         <div className="readingroom">
           <Canvas /* camera={[0, 0.3, 4.5]} */>
-            <CameraControls ref={cameraControlRef} smoothTime={1} />
+            <CameraControls ref={cameraControlRef} smoothTime={0.8} />
             <group position={[0, -0.4, 0.5]}>
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
               <Suspense>
                 <CompleteShelf position={[-1.7, 0.7, 2.2]} />
                 <Table scale={1} position={[10, -5, 5]} />
-                <Book2 scale={1} rotation={[Math.PI / 2, 0, 0]} position={[10, -1.777, 5]} />
+                <Book2 isTablePosition={isTablePosition} scale={1} rotation={[Math.PI / 2, 0, 0]} position={[10, -1.777, 5]} />
               </Suspense>
             </group>
           </Canvas>

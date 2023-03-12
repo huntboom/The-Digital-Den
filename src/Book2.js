@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -25,7 +25,14 @@ export default function Book2(props) {
       ref.current.position.z += 0.1;
     }
   });
-
+  const isTablePosition = props.isTablePosition
+  useEffect(() => {
+    if (isTablePosition) {
+      console.log("isTablePositionBook2: " + isTablePosition)
+      handleClick(actions)
+      // handleClick(actions);
+    }
+  }, [isTablePosition]);
   return (
     <group ref={ref} onClick={() => handleClick(actions)} {...props} position={props.position} dispose={null}>
       {console.log(animations)}

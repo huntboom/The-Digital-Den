@@ -12,7 +12,7 @@ export default function CompleteShelf(props) {
         const titleStr = title && title["title"] ? title["title"] : "BookTitle";
         const urlStr = title && title["url"] ? title["url"] : "https://archive.org/download/napoleon00chesuoft/page/cover.jpg";
         // const bookCovers = cover && cover["url"] ? cover["url"] : "cover";
-        return <BookGroup scale={0.8} key={i} rotation={[0, Math.PI / 0.66, 0]} title={titleStr} url={urlStr} position={[i * 0.25, 0, 1.05]} />
+        return <BookGroup key={i} rotation={[0, Math.PI / 0.66, 0]} title={titleStr} url={urlStr} position={[i * 0.25, 0, 1.05]} />
       })}
     </group>
   );
