@@ -2,9 +2,12 @@ import React, { useRef } from "react";
 import ImageObject from './ImageObject.js';
 import Book3 from './Book3.js';
 import TextObject from './BookTitle.js';
+import { updateBookText } from './store.js';
+import { useDispatch } from 'react-redux';
 
 export default function BookGroup(props) {
   const ref = useRef();
+  const dispatch = useDispatch();
   const handleSearch = async () => {
     const response = await fetch(`https://gutendex.com/books/?search=${props.title}`);
     const data = await response.json();
@@ -18,7 +21,11 @@ export default function BookGroup(props) {
     console.log(bookUrl)
     const bookUrlData = await fetch(bookUrl, { timeout: 600000 })
     const bookUrlResponse = await bookUrlData.text();
-    console.log(bookUrlResponse)
+    const first1000Chars = bookUrlResponse.substring(0, 1000);
+    console.log(first1000Chars)
+    return first1000Chars;
+    dispatch(updateBookText(first1000Chars));
+    // console.log(bookUrlResponse)
     //https://www.gutenberg.org/files/1342/1342-0.txt
   };
 
@@ -35,7 +42,7 @@ export default function BookGroup(props) {
   return (
     <group position={props.position} scale={0.8} rotation={props.rotation} ref={ref} onClick={handleClick}
       onPointerOver={() => {
-        ref.current.position.z = 1.3;
+        ref.current.position.z = 1.4;
         // console.log("Book Group Position: ", ref.current.position);
         // console.log("Book Group Rotation: ", ref.current.rotation);
       }}

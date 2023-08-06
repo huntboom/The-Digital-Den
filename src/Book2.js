@@ -10,12 +10,10 @@ export default function Book2(props) {
   const { actions } = useAnimations(animations, group);
   const clip = animations[0]
   const duration = clip.duration
-  console.log(clip)
   function handleClick(actions) {
     actions.Demo.setDuration(3.33 / 2);
     actions.Demo.setLoop('LoopOnce');
     actions.Demo.setLoop(THREE.LoopOnce, 1);
-    console.log(actions.Demo);
     actions.Demo.clampWhenFinished = true;
     actions.Demo.play();
     actions.Demo.halt(3.33);
@@ -35,8 +33,6 @@ export default function Book2(props) {
   }, [isTablePosition]);
   return (
     <group ref={ref} onClick={() => handleClick(actions)} {...props} position={props.position} dispose={null}>
-      {console.log(animations)}
-      {console.log(clip)}
       <group ref={group} name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="Root" rotation={[4.7, 0, 0]}>

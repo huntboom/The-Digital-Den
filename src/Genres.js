@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import store from './store';
-import { updateCoverTitles } from './actions';
+import store from './store'; import { updateCoverTitles } from './actions';
 const bookCovers = []
 const coversTitles = {};
 const GenreList = () => {
@@ -25,7 +24,10 @@ const GenreList = () => {
   //Okay request made and works, the "next" object in the json gives the url for the next set of
   //books as this one seems to set the limit at 32 books.
   //So I'll 
-  const handleGenresClick = async (genre) => {
+  //Alright let's do this, take the title of a book acquired by the gutendex search, and then search openlibrary for that title. 
+  //console.log the results.
+  //okay so I did that and got the title of the book, now I need to do the following: 
+  const handleGenreClick = async (genre) => {
     setGenre(genre);
     try {
       const response = await fetch(`https://openlibrary.org/search.json?q=subject:${genre}&limit=30`);
@@ -51,7 +53,7 @@ const GenreList = () => {
     }
   };
   //okay so I can take the count, divide it by 32 to see how many pages there are.
-  const handleGenreClick = async (genre) => {
+  const handleGenresClick = async (genre) => {
     setGenre(genre);
     try {
       //make the request for the given genre
@@ -76,34 +78,27 @@ const GenreList = () => {
       const page2data = await page2response.json();
       console.log(data.results)
       console.log(page2data.results)
+      console.log(data.results[0]['title'])
+      const title = data.results[0]['title']
+      const openResponse = await fetch(`https://openlibrary.org/search.json?q=subject:${title}`);
+      //okay for item in the 
+      const openData = await openResponse.json();
+      console.log(openData)
     } catch (error) {
       console.error(error);
     }
   };
+  const genres = [
+    'Verne', 'Thriller', 'Horror', 'Mystery', 'Romance', 'Fantasy', 'Historical Fiction',
+    'Non-Fiction', 'Physics', 'Autobiography', 'Comedy', 'Drama', 'Action',
+    'Adventure', 'Crime', 'Western', 'Young Adult', 'Sports', 'Religion',
+    'Philosophy', 'Children', 'Cookbooks'
+  ];
   return (
     <div>
-      <button onClick={() => handleGenreClick('Science Fiction')}>Science Fiction</button>
-      <button onClick={() => handleGenreClick('Thriller')}>Thriller</button>
-      <button onClick={() => handleGenreClick('Horror')}>Horror</button>
-      <button onClick={() => handleGenreClick('Mystery')}>Mystery</button>
-      <button onClick={() => handleGenreClick('Romance')}>Romance</button>
-      <button onClick={() => handleGenreClick('Fantasy')}>Fantasy</button>
-      <button onClick={() => handleGenreClick('Historical Fiction')}>Historical Fiction</button>
-      <button onClick={() => handleGenreClick('Non-Fiction')}>Non-Fiction</button>
-      <button onClick={() => handleGenreClick('Physics')}>Physics</button>
-      <button onClick={() => handleGenreClick('Autobiography')}>Autobiography</button>
-      <button onClick={() => handleGenreClick('Comedy')}>Comedy</button>
-      <button onClick={() => handleGenreClick('Drama')}>Drama</button>
-      <button onClick={() => handleGenreClick('Action')}>Action</button>
-      <button onClick={() => handleGenreClick('Adventure')}>Adventure</button>
-      <button onClick={() => handleGenreClick('Crime')}>Crime</button>
-      <button onClick={() => handleGenreClick('Western')}>Western</button>
-      <button onClick={() => handleGenreClick('Young Adult')}>Young Adult</button>
-      <button onClick={() => handleGenreClick('Sports')}>Sports</button>
-      <button onClick={() => handleGenreClick('Religion')}>Religion</button>
-      <button onClick={() => handleGenreClick('Philosophy')}>Philosophy</button>
-      <button onClick={() => handleGenreClick('Children')}>Children</button>
-      <button onClick={() => handleGenreClick('Cookbooks')}>Cookbooks</button>
+      {genres.map(genre => (
+        <button key={genre} onClick={() => handleGenreClick(genre)}>{genre}</button>
+      ))}
       <h2>{genre} Books</h2>
       {/* <ul> */}
       {/*   {bookList.map((title, index) => ( */}
