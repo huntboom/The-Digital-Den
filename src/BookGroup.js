@@ -8,26 +8,22 @@ import { useDispatch } from 'react-redux';
 export default function BookGroup(props) {
   const ref = useRef();
   const dispatch = useDispatch();
+
   const handleSearch = async () => {
     const response = await fetch(`https://gutendex.com/books/?search=${props.title}`);
     const data = await response.json();
-    console.log(data)
     const firstResult = data.results[0]
-    console.log(firstResult)
     const bookId = firstResult.id
 
     // should be the url for the plaintext version:
     const bookUrl = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '.txt';
-    console.log(bookUrl)
     const bookUrlData = await fetch(bookUrl, { timeout: 600000 })
     const bookUrlResponse = await bookUrlData.text();
     const first1000Chars = bookUrlResponse.substring(0, 1000);
-    console.log(first1000Chars)
-    return first1000Chars;
+
     dispatch(updateBookText(first1000Chars));
-    // console.log(bookUrlResponse)
-    //https://www.gutenberg.org/files/1342/1342-0.txt
   };
+
 
   const handleClick = () => {
     // ref.current.rotation.y = Math.PI / -2;

@@ -94,12 +94,17 @@ const GenreList = () => {
     'Adventure', 'Crime', 'Western', 'Young Adult', 'Sports', 'Religion',
     'Philosophy', 'Children', 'Cookbooks'
   ];
+  const handleBookLog = () => {
+    const currentState = store.getState();
+    console.log(currentState.bookText);
+  };
   return (
     <div>
       {genres.map(genre => (
         <button key={genre} onClick={() => handleGenreClick(genre)}>{genre}</button>
       ))}
       <h2>{genre} Books</h2>
+      <button onClick={handleBookLog}>Log Book</button>
       {/* <ul> */}
       {/*   {bookList.map((title, index) => ( */}
       {/*     <li key={index}>{title}</li> */}
