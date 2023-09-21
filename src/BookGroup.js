@@ -14,12 +14,16 @@ export default function BookGroup(props) {
     const data = await response.json();
     const firstResult = data.results[0]
     const bookId = firstResult.id
-
+    console.log("this is the id: " + bookId)
     // should be the url for the plaintext version:
-    const bookUrl = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '.txt';
+    const bookUrltxt = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '.txt';
+    const bookUrl = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '-images.html';
+    //change .txt to -images.html for html instead. 
+    // example url for the html file "https://www.gutenberg.org/ebooks/1523.html.images"
     const bookUrlData = await fetch(bookUrl, { timeout: 600000 })
     const bookUrlResponse = await bookUrlData.text();
-    const first1000Chars = bookUrlResponse.substring(0, 1000);
+    //    const first1000Chars = bookUrlResponse.substring(0, 100000);
+    const first1000Chars = bookUrlResponse;
 
     dispatch(updateBookText(first1000Chars));
   };

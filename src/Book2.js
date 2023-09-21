@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF, useAnimations, Html } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-
+import { Text } from "@react-three/drei";
+import store from './store';
 export default function Book2(props) {
   const ref = useRef();
   const group = useRef();
@@ -12,12 +13,13 @@ export default function Book2(props) {
   const duration = clip.duration
   function handleClick(actions) {
     actions.Demo.setDuration(3.33 / 2);
-    actions.Demo.setLoop('LoopOnce');
-    actions.Demo.setLoop(THREE.LoopOnce, 1);
-    actions.Demo.clampWhenFinished = true;
+    // actions.Demo.setLoop('LoopOnce');
+    // actions.Demo.setLoop(THREE.LoopOnce, 1);
+    actions.Demo.clampWhenFinished = false;
     actions.Demo.play();
     actions.Demo.halt(3.33);
   }
+
   useFrame(() => {
     if (ref.current.position.z < 1) {
       ref.current.position.z += 0.1;
@@ -28,9 +30,12 @@ export default function Book2(props) {
     if (isTablePosition) {
       console.log("isTablePositionBook2: " + isTablePosition)
       handleClick(actions)
+      const currentState = store.getState();
+      console.log(currentState.bookText);
       // handleClick(actions);
     }
   }, [isTablePosition]);
+  const currentState = store.getState();
   return (
     <group ref={ref} onClick={() => handleClick(actions)} {...props} position={props.position} dispose={null}>
       <group ref={group} name="Sketchfab_Scene">
@@ -46,6 +51,11 @@ export default function Book2(props) {
                 skeleton={nodes.Book_0.skeleton}
               />
             </group>
+            <Html>
+              <div style={{ maxWidth: '300px', overflow: 'auto', fontSize: '14px', color: 'black' }}
+                dangerouslySetInnerHTML={{ __html: currentState.bookText }}
+              />
+            </Html>
             <group
               name="Lamp"
               position={[4.08, 1.01, 5.9]}

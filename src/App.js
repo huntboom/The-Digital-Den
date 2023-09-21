@@ -94,8 +94,7 @@ function App() {
               <Suspense>
                 <CompleteShelf position={[-1.7, 0.7, 2.2]} />
                 <Table scale={1} position={[10, -5, 5]} />
-                <Book2 isTablePosition={isTablePosition} scale={1} rotation={[Math.PI / 2, 0, 0]} position={[10, -1.777, 5]} />
-              </Suspense>
+                <Book2 isTablePosition={isTablePosition} scale={1} rotation={[Math.PI / 2, 0, 0]} position={[10, -1.777, 5]} /> </Suspense>
             </group>
           </Canvas>
         </div>
