@@ -51,8 +51,8 @@ export default function Book2(props) {
                 skeleton={nodes.Book_0.skeleton}
               />
             </group>
-            <Html>
-              <div style={{ maxWidth: '300px', overflow: 'auto', fontSize: '14px', color: 'black' }}
+            <Html position={[0, 0.8, 0]}>
+              <div style={{ maxWidth: '320px', maxHeight: '250px', overflow: 'hidden', fontSize: '14px', color: 'black' }}
                 dangerouslySetInnerHTML={{ __html: currentState.bookText }}
               />
             </Html>
@@ -66,7 +66,7 @@ export default function Book2(props) {
           </group>
         </group>
       </group>
-    </group>
+    </group >
   );
 }
 
