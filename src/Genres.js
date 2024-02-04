@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import store from './store'; import { updateCoverTitles } from './actions';
+import { resetCoverTitles } from './store';
 const bookCovers = []
 const coversTitles = {};
 const GenreList = () => {
@@ -29,6 +30,7 @@ const GenreList = () => {
   //okay so I did that and got the title of the book, now I need to do the following: 
   const handleGenreClick = async (genre) => {
     setGenre(genre);
+    store.dispatch(resetCoverTitles());
     try {
       const response = await fetch(`https://openlibrary.org/search.json?q=subject:${genre}&limit=30`);
       const data = await response.json();

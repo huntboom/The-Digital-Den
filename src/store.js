@@ -2,13 +2,24 @@ import { createStore } from 'redux';
 
 const initialState = {
   coversTitles: [],
-  bookText: null, // added this line
+  bookText: null,
 };
 
-// Action type
+// Action types
+const UPDATE_COVER_TITLES = 'UPDATE_COVER_TITLES';
+const RESET_COVER_TITLES = 'RESET_COVER_TITLES';
 const UPDATE_BOOK_TEXT = 'UPDATE_BOOK_TEXT';
 
-// Action creator
+// Action creators
+const updateCoverTitles = (titles) => ({
+  type: UPDATE_COVER_TITLES,
+  payload: titles,
+});
+
+const resetCoverTitles = () => ({
+  type: RESET_COVER_TITLES,
+});
+
 const updateBookText = (text) => ({
   type: UPDATE_BOOK_TEXT,
   payload: text,
@@ -16,15 +27,20 @@ const updateBookText = (text) => ({
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'UPDATE_COVER_TITLES':
+    case UPDATE_COVER_TITLES:
       return {
         ...state,
-        coversTitles: action.payload
+        coversTitles: action.payload,
+      };
+    case RESET_COVER_TITLES:
+      return {
+        ...state,
+        coversTitles: [],
       };
     case UPDATE_BOOK_TEXT:
       return {
         ...state,
-        bookText: action.payload
+        bookText: action.payload,
       };
     default:
       return state;
@@ -34,4 +50,4 @@ const rootReducer = (state = initialState, action) => {
 const store = createStore(rootReducer);
 
 export default store;
-export { updateBookText };
+export { updateCoverTitles, resetCoverTitles, updateBookText };

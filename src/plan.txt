@@ -1,0 +1,7 @@
+Chunk: 
+On click of button, update data. 
+1. Start by "clearing" state with a clear button. 
+2. Check the redux store and see what the starting state is such as null. 
+3. Create a button to update it to null again
+4. Have it rerender the page if necessary.
+5. 
