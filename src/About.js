@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,9 +64,11 @@ const About = () => {
           magical feeling of looking for a book in library or bookstore while still providing tools
           for streamlining the process for those who want to.
         </Typography>
+    <Link to="/second-page">
         <Button variant="contained" color="primary" className={classes.button}>
           Enter The Reading Room
         </Button>
+    </Link>
       </Container>
     </div>
   );
