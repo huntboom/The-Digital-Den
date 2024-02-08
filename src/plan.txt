@@ -4,4 +4,32 @@ On click of button, update data.
 2. Check the redux store and see what the starting state is such as null. 
 3. Create a button to update it to null again
 4. Have it rerender the page if necessary.
-5. 
+5. If the button works, have each button run the null state button commmand and then after, run 
+   another function to update to the new data.
+6. Essentially you're making a function to "reset" the data to the null configuration. 
+
+
+After parsing through my code, I see in Genres.js it takes covers from open library then dispatches them to the 
+redux store. 
+So write a new root reducer to reset the state. 
+
+
+That worked. Okay what's next. 
+
+Time to do react router stuff. 
+
+1. Start by looking at your App.js file
+2. Alright after commenting and uncommenting parts of my code I realized they weren't really being commented out, I was
+relying on the LSP and neovim to do so but it wasn't really commenting it out, it just appeared commented out, but still 
+rendered. So I need to figure out the correct way to comment something out so that I can implement routing better. 
+
+1. Separation of concerns. Separate components into their own files and then import them. This allows you to organize it into 
+landing pages vs a long mess of code. 
+2. Add routing. Once things are separated and then placed into individual pages for each file, you can slowly add routing where you have basic pages and add the components you want. 
+
+Okay so basic overview:
+
+1. Add routing and clean things up. 
+    - Figure out how to properly comment stuff out. Then you can organize what parts you want to make to be on the landing page. 
+2. Change the data calling order, use gutendex first, then use openlibrary, then make calls to gutenburg. This order will ensure that gutenburg has the data.
+3. Increase readability: Add pagination and the ability for users to save their place in their book. Zoom in more so the text fits the whole screen. 
