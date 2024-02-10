@@ -53,7 +53,7 @@ const ReadingRoom = () => {
     <div className="readingroom">
       <Canvas>
         <CameraControls ref={cameraControlRef} smoothTime={0.8} />
-        <group position={[0, -0.4, 0.5]}>
+        <group position={[0, -0.4, 0.8]}>
           <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
           <ambientLight />
           <Suspense>

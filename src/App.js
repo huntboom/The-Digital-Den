@@ -19,14 +19,8 @@ const LandingPage = () => (
 const SecondPage = () => (
   <>
     <Header />
-    <SearchBooks />
-    <Library />
-    <GenreList />
+    <GenreList/>
     <ReadingRoom />
-      <Link to="/">
-      <button>Page</button>
-    </Link>
-
   </>
 );
 
