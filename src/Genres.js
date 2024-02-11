@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import store from './store'; import { updateCoverTitles } from './actions';
 import { resetCoverTitles } from './store';
 const bookCovers = []
@@ -7,6 +7,9 @@ const GenreList = () => {
   const [genre, setGenre] = useState('');
   const [bookList, setBookList] = useState([]);
   const [bookCover, setBookCover] = useState(null);
+  useEffect(() => {
+    handleGenreClick('Mystery');
+  }, []); // Empty dependency array ensures this runs only once on component mount
   const handleMysteryClick = async () => {
     setGenre('Mystery');
     try {
