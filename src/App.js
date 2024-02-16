@@ -13,6 +13,7 @@ const LandingPage = () => (
   <>
     <Header />
     <About />
+    <GenreList/>
   </>
 );
 
@@ -20,7 +21,6 @@ const SecondPage = () => (
   <>
     <Header />
     <ReadingRoom />
-    <GenreList/>
   </>
 );
 

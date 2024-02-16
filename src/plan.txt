@@ -31,5 +31,18 @@ Okay so basic overview:
 
 1. Add routing and clean things up. 
     - Figure out how to properly comment stuff out. Then you can organize what parts you want to make to be on the landing page. 
+Routing Done.
+
+Time to clean up UI more. On load I want the shelves populated with books to start. 
+
+Done now I need to get the book data to load on the first page so that when you enter the reading room it has already loaded. 
+
+
 2. Change the data calling order, use gutendex first, then use openlibrary, then make calls to gutenburg. This order will ensure that gutenburg has the data.
 3. Increase readability: Add pagination and the ability for users to save their place in their book. Zoom in more so the text fits the whole screen. 
+
+
+
+
+
+
