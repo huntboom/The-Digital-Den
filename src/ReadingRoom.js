@@ -23,8 +23,10 @@ const ReadingRoom = () => {
   };
 
   const handleButtonClick = () => {
-    console.log(cameraControlRef.current._camera.position);
-    console.log(cameraControlRef.current._target.toArray());
+    const arr1 = cameraControlRef.current._camera.position.toArray();
+    const arr2 = cameraControlRef.current._target.toArray();
+    const position = [...arr1,...arr2];
+    console.log(position);
   };
 
   return (
@@ -38,6 +40,29 @@ const ReadingRoom = () => {
         }}
       >
         Return to Starting Position
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          const arr1 = cameraControlRef.current._camera.position.toArray();
+          const arr2 = cameraControlRef.current._target.toArray();
+          const position = [...arr1,...arr2];
+    console.log(position);
+    const Xvalue = position[0]
+    const Xplus = Xvalue+0.5;
+    const Xcam = position[3]
+    const Xcamplus = Xcam+0.5
+    const newarr = position.splice(0,1)
+    const newarr2 = position.splice(4,1)
+    const newposition = position.unshift(Xplus)
+    const newposition2 = position.splice(3,0,Xcamplus)
+    console.log("Changed position "+position)
+          cameraControlRef.current?.setLookAt(...position, true);
+          handleStartingPosition();
+
+        }}
+      >
+        Move 5 Right
       </button>
       <button
         type="button"
