@@ -46,23 +46,42 @@ const ReadingRoom = () => {
         onClick={() => {
           const arr1 = cameraControlRef.current._camera.position.toArray();
           const arr2 = cameraControlRef.current._target.toArray();
+          const startingPosition = [0, 3.061616997868383e-16, 5, 0, 0, 0];
           const position = [...arr1,...arr2];
-    console.log(position);
-    const Xvalue = position[0]
-    const Xplus = Xvalue+0.5;
-    const Xcam = position[3]
-    const Xcamplus = Xcam+0.5
-    const newarr = position.splice(0,1)
-    const newarr2 = position.splice(4,1)
-    const newposition = position.unshift(Xplus)
-    const newposition2 = position.splice(3,0,Xcamplus)
-    console.log("Changed position "+position)
-          cameraControlRef.current?.setLookAt(...position, true);
+          const Xvalue = position[0]
+          const Xplus = Xvalue+0.5;
+          const Xcam = position[3]
+          const Xcamplus = Xcam+0.5
+          const newarr = startingPosition.splice(0,1)
+          const newarr2 = startingPosition.splice(4,1)
+          const newposition = startingPosition.unshift(Xplus)
+          const newposition2 = startingPosition.splice(3,0,Xcamplus)
+          cameraControlRef.current?.setLookAt(...startingPosition, true);
           handleStartingPosition();
-
         }}
       >
         Move 5 Right
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          const arr1 = cameraControlRef.current._camera.position.toArray();
+          const arr2 = cameraControlRef.current._target.toArray();
+          const startingPosition = [0, 3.061616997868383e-16, 5, 0, 0, 0];
+          const position = [...arr1,...arr2];
+          const Xvalue = position[0]
+          const Xplus = Xvalue-0.5;
+          const Xcam = position[3]
+          const Xcamplus = Xcam-0.5
+          const newarr = startingPosition.splice(0,1)
+          const newarr2 = startingPosition.splice(4,1)
+          const newposition = startingPosition.unshift(Xplus)
+          const newposition2 = startingPosition.splice(3,0,Xcamplus)
+          cameraControlRef.current?.setLookAt(...startingPosition, true);
+          handleStartingPosition();
+        }}
+      >
+        Move 5 Left 
       </button>
       <button
         type="button"

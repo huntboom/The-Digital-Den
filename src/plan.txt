@@ -40,7 +40,7 @@ Done now I need to get the book data to load on the first page so that when you 
 
 2. Change the data calling order, use gutendex first, then use openlibrary, then make calls to gutenburg. This order will ensure that gutenburg has the data.
 3. Increase readability: Add pagination and the ability for users to save their place in their book. Zoom in more so the text fits the whole screen. 
-
+okay so I need to use the camera helpers to see the X values of the starting position specifically and add 0.5 to them.
 
 
 
