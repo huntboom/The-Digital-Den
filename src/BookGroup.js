@@ -28,7 +28,30 @@ export default function BookGroup(props) {
     dispatch(updateBookText(first1000Chars));
   };
 
+// Function to linearly interpolate between two values
+function lerp(start, end, alpha) {
+    return start + (end - start) * alpha;
+}
 
+// Smooth transition function
+function smoothTransition(ref, targetZ, duration) {
+    const startTime = performance.now();
+    const startZ = ref.current.position.z;
+
+    function animate(now) {
+        const timeElapsed = now - startTime;
+        const alpha = Math.min(timeElapsed / duration, 1); // Ensure alpha is in the range [0, 1]
+
+        ref.current.position.z = lerp(startZ, targetZ, alpha);
+
+        if (alpha < 1) {
+            // Continue the animation as long as alpha is less than 1
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
   const handleClick = () => {
     // ref.current.rotation.y = Math.PI / -2;
     // ref.current.position.z = 1.1;
@@ -42,12 +65,11 @@ export default function BookGroup(props) {
   return (
     <group position={props.position} scale={0.8} rotation={props.rotation} ref={ref} onClick={handleClick}
       onPointerOver={() => {
-        ref.current.position.z = 1.4;
-        // console.log("Book Group Position: ", ref.current.position);
-        // console.log("Book Group Rotation: ", ref.current.rotation);
+          smoothTransition(ref, 1.2, 500); // Transition to z=1.2 over 500 milliseconds
       }}
-      onPointerOut={() => (ref.current.position.z = 1.05)}
-    >
+      onPointerOut={() => {
+          smoothTransition(ref, 1.05, 500); // Transition back to z=1.05 over 500 milliseconds
+      }}>
       <ImageObject scale={0.08} url={props.url} position={[0.021, 0, 1.0001]} />
       <Book3 scale={0.02} />
       <TextObject title={props.title} position={[0, 0.05, 1.1016]} />

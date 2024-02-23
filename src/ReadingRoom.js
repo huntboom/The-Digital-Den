@@ -44,40 +44,38 @@ const ReadingRoom = () => {
       <button
         type="button"
         onClick={() => {
-          const arr1 = cameraControlRef.current._camera.position.toArray();
-          const arr2 = cameraControlRef.current._target.toArray();
-          const startingPosition = [0, 3.061616997868383e-16, 5, 0, 0, 0];
-          const position = [...arr1,...arr2];
-          const Xvalue = position[0]
-          const Xplus = Xvalue+0.5;
-          const Xcam = position[3]
-          const Xcamplus = Xcam+0.5
-          const newarr = startingPosition.splice(0,1)
-          const newarr2 = startingPosition.splice(4,1)
-          const newposition = startingPosition.unshift(Xplus)
-          const newposition2 = startingPosition.splice(3,0,Xcamplus)
-          cameraControlRef.current?.setLookAt(...startingPosition, true);
+          // Extract current camera position and target as arrays
+          const cameraPosition = cameraControlRef.current._camera.position.toArray();
+          const targetPosition = cameraControlRef.current._target.toArray();
+          // Calculate new positions by adding 0.5 to the X coordinates for moving right
+          const newXCameraPosition = cameraPosition[0] + 0.5;
+          const newXTargetPosition = targetPosition[0] + 0.5;
+          // Update the positions directly without unnecessary array manipulations
+          cameraControlRef.current?.setLookAt(
+            newXCameraPosition, cameraPosition[1], cameraPosition[2], // new camera position
+            newXTargetPosition, targetPosition[1], targetPosition[2], // new target position
+            true
+          );
           handleStartingPosition();
-        }}
+          }}
       >
         Move 5 Right
       </button>
       <button
         type="button"
         onClick={() => {
-          const arr1 = cameraControlRef.current._camera.position.toArray();
-          const arr2 = cameraControlRef.current._target.toArray();
-          const startingPosition = [0, 3.061616997868383e-16, 5, 0, 0, 0];
-          const position = [...arr1,...arr2];
-          const Xvalue = position[0]
-          const Xplus = Xvalue-0.5;
-          const Xcam = position[3]
-          const Xcamplus = Xcam-0.5
-          const newarr = startingPosition.splice(0,1)
-          const newarr2 = startingPosition.splice(4,1)
-          const newposition = startingPosition.unshift(Xplus)
-          const newposition2 = startingPosition.splice(3,0,Xcamplus)
-          cameraControlRef.current?.setLookAt(...startingPosition, true);
+         // Extract current camera position and target as arrays
+          const cameraPosition = cameraControlRef.current._camera.position.toArray();
+          const targetPosition = cameraControlRef.current._target.toArray();
+          // Calculate new positions by adding 0.5 to the X coordinates for moving right
+          const newXCameraPosition = cameraPosition[0] - 0.5;
+          const newXTargetPosition = targetPosition[0] - 0.5;
+          // Update the positions directly without unnecessary array manipulations
+          cameraControlRef.current?.setLookAt(
+            newXCameraPosition, cameraPosition[1], cameraPosition[2], // new camera position
+            newXTargetPosition, targetPosition[1], targetPosition[2], // new target position
+            true
+          );
           handleStartingPosition();
         }}
       >
@@ -97,7 +95,7 @@ const ReadingRoom = () => {
     <div className="readingroom">
       <Canvas>
         <CameraControls ref={cameraControlRef} smoothTime={0.8} />
-        <group position={[0, -0.6, 1.0]}>
+        <group position={[0, -0.6, 1.2]}>
           <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
           <ambientLight />
           <Suspense>
