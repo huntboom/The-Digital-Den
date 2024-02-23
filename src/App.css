@@ -1,6 +1,22 @@
 .App {
   text-align: center;
 }
+.bounds {
+    display:flex;
+    z-index:1;
+    border: 2px solid red; 
+    justify-content:flex-end;
+    flex-direction:row;
+    align-items:flex-start;
+ 
+}
+.overlayed {
+    z-index:1;
+    position:absolute;
+    width: 200px;
+    height:390px;
+    color:white;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 .App-logo {

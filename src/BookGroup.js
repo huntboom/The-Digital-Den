@@ -4,6 +4,7 @@ import Book3 from './Book3.js';
 import TextObject from './BookTitle.js';
 import { updateBookText } from './store.js';
 import { useDispatch } from 'react-redux';
+import { Html } from '@react-three/drei';
 
 export default function BookGroup(props) {
   const ref = useRef();

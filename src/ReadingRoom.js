@@ -6,6 +6,7 @@ import Shelf from './Shelf.js';
 import CompleteShelf from './CompleteShelf.js';
 import Table from './Table.js';
 import Book2 from './Book2.js';
+import { Html } from '@react-three/drei';
 
 const DEG45 = Math.PI / 4;
 
@@ -29,6 +30,33 @@ const ReadingRoom = () => {
     console.log(position);
   };
 
+  const panCameraRight= () => {
+         // Extract current camera position and target as arrays
+          const cameraPosition = cameraControlRef.current._camera.position.toArray();
+          const targetPosition = cameraControlRef.current._target.toArray();
+          // Calculate new positions by adding 0.5 to the X coordinates for moving right
+          const newXCameraPosition = cameraPosition[0] + 0.5;
+          const newXTargetPosition = targetPosition[0] + 0.5;
+          // Update the positions directly without unnecessary array manipulations
+          cameraControlRef.current?.setLookAt(
+            newXCameraPosition, cameraPosition[1], cameraPosition[2], // new camera position
+            newXTargetPosition, targetPosition[1], targetPosition[2], // new target position
+            true
+          );
+          handleStartingPosition();
+        };
+function HTMLInside() {
+  return(
+        <div className='bounds'>
+        <div className='overlayed'
+             onPointerOver={() =>{
+             panCameraRight();
+            }} 
+              >
+          </div>
+        </div>
+  );
+}
   return (
     <div>
       <button
@@ -105,6 +133,7 @@ const ReadingRoom = () => {
           </Suspense>
         </group>
       </Canvas>
+      <HTMLInside/>
     </div>
     </div>
   );
