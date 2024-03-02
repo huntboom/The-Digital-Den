@@ -1,21 +1,12 @@
 .App {
   text-align: center;
 }
-.bounds {
+
+.homepage {
     display:flex;
-    z-index:1;
-    border: 2px solid red; 
-    justify-content:flex-end;
-    flex-direction:row;
-    align-items:flex-start;
- 
-}
-.overlayed {
-    z-index:1;
-    position:absolute;
-    width: 200px;
-    height:390px;
-    color:white;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
@@ -29,16 +20,34 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.readingroom {
-  display:flex;
-  /* flex-direction: */
-  outline: 1px solid red !important;
-  flex-direction:row;
-  height:100vh;
+.container{
+}
+.leftSection {
+   z-index:1;
+   position:absolute; 
+   left:0;
+   width:20em;
+   height:50em;
+}
+.rightSection{
+   z-index:1;
+   position:absolute; 
+   right:0;
+   width:20em;
+   height:50em;
+}
+.overlayed{
+   position:absolute; 
+   z-index:1;
+   left:0;
+   top:0
+}
+.readingroom{
+  height:50em;
+  width:100%;
 }
 .bookfinder {
   margin-left:2em;
-
 
 }
 .scale-up-center {

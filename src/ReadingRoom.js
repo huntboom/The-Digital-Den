@@ -30,14 +30,11 @@ const ReadingRoom = () => {
     console.log(position);
   };
 
-  const panCameraRight= () => {
-         // Extract current camera position and target as arrays
+  const dollyCameraLeft = () => {
           const cameraPosition = cameraControlRef.current._camera.position.toArray();
           const targetPosition = cameraControlRef.current._target.toArray();
-          // Calculate new positions by adding 0.5 to the X coordinates for moving right
-          const newXCameraPosition = cameraPosition[0] + 0.5;
-          const newXTargetPosition = targetPosition[0] + 0.5;
-          // Update the positions directly without unnecessary array manipulations
+          const newXCameraPosition = cameraPosition[0] - 0.5;
+          const newXTargetPosition = targetPosition[0] - 0.5;
           cameraControlRef.current?.setLookAt(
             newXCameraPosition, cameraPosition[1], cameraPosition[2], // new camera position
             newXTargetPosition, targetPosition[1], targetPosition[2], // new target position
@@ -45,12 +42,25 @@ const ReadingRoom = () => {
           );
           handleStartingPosition();
         };
+const dollyCameraRight = () => {
+          const cameraPosition = cameraControlRef.current._camera.position.toArray();
+          const targetPosition = cameraControlRef.current._target.toArray();
+          const newXCameraPosition = cameraPosition[0] + 0.5;
+          const newXTargetPosition = targetPosition[0] + 0.5;
+          cameraControlRef.current?.setLookAt(
+            newXCameraPosition, cameraPosition[1], cameraPosition[2], // new camera position
+            newXTargetPosition, targetPosition[1], targetPosition[2], // new target position
+            true
+          );
+          handleStartingPosition();
+        };
+
 function HTMLInside() {
   return(
         <div className='bounds'>
         <div className='overlayed'
              onPointerOver={() =>{
-             panCameraRight();
+            dollyCameraLeft();
             }} 
               >
           </div>
@@ -120,6 +130,9 @@ function HTMLInside() {
         Go to Table Position
       </button>
       <button onClick={handleButtonClick}>Log Camera Position</button>
+    <div className="homepage">
+    <div className="leftSection" onPointerOver={() =>{dollyCameraLeft()}}></div>
+    <div className="rightSection" onPointerOver={() =>{dollyCameraRight()}}></div>
     <div className="readingroom">
       <Canvas>
         <CameraControls ref={cameraControlRef} smoothTime={0.8} />
@@ -133,7 +146,7 @@ function HTMLInside() {
           </Suspense>
         </group>
       </Canvas>
-      <HTMLInside/>
+    </div>
     </div>
     </div>
   );
