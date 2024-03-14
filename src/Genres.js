@@ -21,16 +21,6 @@ const GenreList = () => {
     }
   };
 
-  //Okay instead of openlibrary--->project gutenburg, how about I start with project Gutenburg to ensure 
-  //I the titles exist there, and then I get the covers for the books from open library. 
-  //Because Project Gutenburg does not allow API request, I'll have to use gutendex
-  //https://gutendex.com/books/?topic=${topic-goes-here}
-  //Okay request made and works, the "next" object in the json gives the url for the next set of
-  //books as this one seems to set the limit at 32 books.
-  //So I'll 
-  //Alright let's do this, take the title of a book acquired by the gutendex search, and then search openlibrary for that title. 
-  //console.log the results.
-  //okay so I did that and got the title of the book, now I need to do the following: 
   const handleGenreClick = async (genre) => {
     setGenre(genre);
     store.dispatch(resetCoverTitles());
@@ -110,11 +100,6 @@ const GenreList = () => {
       ))}
       <h2>{genre} Books</h2>
       <button onClick={handleBookLog}>Log Book</button>
-      {/* <ul> */}
-      {/*   {bookList.map((title, index) => ( */}
-      {/*     <li key={index}>{title}</li> */}
-      {/*   ))} */}
-      {/* </ul> */}
     </div>
   );
 };

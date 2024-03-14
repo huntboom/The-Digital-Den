@@ -41,8 +41,22 @@ Done now I need to get the book data to load on the first page so that when you 
 2. Change the data calling order, use gutendex first, then use openlibrary, then make calls to gutenburg. This order will ensure that gutenburg has the data.
 3. Increase readability: Add pagination and the ability for users to save their place in their book. Zoom in more so the text fits the whole screen. 
 okay so I need to use the camera helpers to see the X values of the starting position specifically and add 0.5 to them.
+  //Okay instead of openlibrary--->project gutenburg, how about I start with project Gutenburg to ensure 
+  //I the titles exist there, and then I get the covers for the books from open library. 
+  //Because Project Gutenburg does not allow API request, I'll have to use gutendex
+  //https://gutendex.com/books/?topic=${topic-goes-here}
+  //Okay request made and works, the "next" object in the json gives the url for the next set of
+  //books as this one seems to set the limit at 32 books.
+  //So I'll 
+  //Alright let's do this, take the title of a book acquired by the gutendex search, and then search openlibrary for that title. 
+  //console.log the results.
+  //okay so I did that and got the title of the book, now I need to do the following: 
 
 
+Okay I need to make it so I can load in the data for the reading room initially, so the complete shelf needs to be object orientedso it will take an parameters and display them.
 
+15:15
+Plan: Look over code and document what changes I need to make to separate the functions into objects that take object parameters.
+GO!
 
 

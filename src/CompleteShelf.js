@@ -11,7 +11,6 @@ export default function CompleteShelf(props) {
       {coversTitlesArray.map((title, i) => {
         const titleStr = title && title["title"] ? title["title"] : "BookTitle";
         const urlStr = title && title["url"] ? title["url"] : "https://archive.org/download/napoleon00chesuoft/page/cover.jpg";
-        // const bookCovers = cover && cover["url"] ? cover["url"] : "cover";
         return <BookGroup key={i} rotation={[0, Math.PI / 0.66, 0]} title={titleStr} url={urlStr} position={[i * 0.25, 0, 1.05]} />
       })}
     </group>
