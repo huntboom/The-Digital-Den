@@ -1,46 +1,56 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  coversTitles: [],
-  bookText: null,
+  shelves: {},
+  bookText: {},
 };
 
 // Action types
-const UPDATE_COVER_TITLES = 'UPDATE_COVER_TITLES';
-const RESET_COVER_TITLES = 'RESET_COVER_TITLES';
+const UPDATE_SHELF = 'UPDATE_SHELF';
+const RESET_SHELF = 'RESET_SHELF';
 const UPDATE_BOOK_TEXT = 'UPDATE_BOOK_TEXT';
 
 // Action creators
-const updateCoverTitles = (titles) => ({
-  type: UPDATE_COVER_TITLES,
-  payload: titles,
+const updateShelf = (genre, titles) => ({
+  type: UPDATE_SHELF,
+  payload: { genre, titles },
 });
 
-const resetCoverTitles = () => ({
-  type: RESET_COVER_TITLES,
+const resetShelf = (genre) => ({
+  type: RESET_SHELF,
+  payload: genre,
 });
 
-const updateBookText = (text) => ({
+const updateBookText = (payload) => ({
   type: UPDATE_BOOK_TEXT,
-  payload: text,
+  payload,
 });
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_COVER_TITLES:
+    case UPDATE_SHELF:
       return {
         ...state,
-        coversTitles: action.payload,
+        shelves: {
+          ...state.shelves,
+          [action.payload.genre]: action.payload.titles,
+        },
       };
-    case RESET_COVER_TITLES:
+    case RESET_SHELF:
       return {
         ...state,
-        coversTitles: [],
+        shelves: {
+          ...state.shelves,
+          [action.payload]: [],
+        },
       };
     case UPDATE_BOOK_TEXT:
       return {
         ...state,
-        bookText: action.payload,
+        bookText: {
+          ...state.bookText,
+          [action.payload.genre]: action.payload.text,
+        },
       };
     default:
       return state;
@@ -50,4 +60,4 @@ const rootReducer = (state = initialState, action) => {
 const store = createStore(rootReducer);
 
 export default store;
-export { updateCoverTitles, resetCoverTitles, updateBookText };
+export { updateShelf, resetShelf, updateBookText };

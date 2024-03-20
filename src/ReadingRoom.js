@@ -159,9 +159,12 @@ const ReadingRoom = () => {
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
               <Suspense>
-                <CompleteShelf position={[-1.7, 0.7, 2.2]} />
+                <CompleteShelf genre="Mystery" position={[-1.7, 0.7, 2.2]} />
+                <CompleteShelf genre="Fantasy" position={[-1.7, 0.2, 2.2]} />
+                
+                {/* Add more CompleteShelf components with different genres */}
                 <Table scale={1} position={[10, -5, 5]} />
-                <Book2 isTablePosition={isTablePosition} scale={1} rotation={[Math.PI / 2, 0, 0]} position={[10, -1.777, 5]} />
+                <Book2 isTablePosition={isTablePosition} genre={isTablePosition ? 'Mystery' : null} scale={1} rotation={[Math.PI / 2, 0, 0]} position={[10, -1.777, 5]} />
               </Suspense>
             </group>
           </Canvas>
