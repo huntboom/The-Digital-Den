@@ -56,6 +56,7 @@ export default function BookGroup(props) {
   const handleClick = () => {
     console.log(props.title);
     handleSearch();
+    props.onClick(); 
   };
 
   return (

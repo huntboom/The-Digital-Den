@@ -77,7 +77,19 @@ const ReadingRoom = () => {
     const intervalId = setInterval(moveCamera, 50);
     setMoveIntervalId(intervalId);
   };
+  const goToTablePosition = () => {
+  const tablePosition = [
+    10.065679205124855,
+    0.2355104039775453,
+    6.013026193563245,
+    10.064639804059142,
+    -5.6553378868500745,
+    5.902359575685355
+  ];
 
+  cameraControlRef.current?.setLookAt(...tablePosition, true);
+  handleTablePosition();
+};
   return (
     <div>
       <button
@@ -130,16 +142,6 @@ const ReadingRoom = () => {
       >
         Move 5 Left 
       </button>
-      <button
-        type="button"
-        onClick={() => {
-          const tablePosition = [10.065679205124855, 0.2355104039775453, 6.013026193563245, 10.064639804059142, -5.6553378868500745, 5.902359575685355];
-          cameraControlRef.current?.setLookAt(...tablePosition, true);
-          handleTablePosition();
-        }}
-      >
-        Go to Table Position
-      </button>
       <button onClick={handleButtonClick}>Log Camera Position</button>
       <div className="homepage">
         <div 
@@ -159,8 +161,10 @@ const ReadingRoom = () => {
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
               <Suspense>
-                <CompleteShelf genre="Mystery" position={[-1.7, 0.7, 2.2]} />
+                <CompleteShelf onBookClick={goToTablePosition} genre="Mystery" position={[-1.7, 0.7, 2.2]} />
                 <CompleteShelf genre="Fantasy" position={[-1.7, 0.2, 2.2]} />
+                <CompleteShelf genre="Crime" position={[-1.7, -0.3, 2.2]} />
+                <CompleteShelf genre="Religion" position={[-1.7, -0.8, 2.2]} />
                 
                 {/* Add more CompleteShelf components with different genres */}
                 <Table scale={1} position={[10, -5, 5]} />

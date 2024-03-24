@@ -6,7 +6,7 @@ const GenreList = () => {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    const initialGenres = ['Mystery', 'Fantasy'];
+    const initialGenres = ['Mystery', 'Fantasy','Crime','Religion'];
     setGenres(initialGenres);
     initialGenres.forEach(genre => {
       handleGenreClick(genre);
