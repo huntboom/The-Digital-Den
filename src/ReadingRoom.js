@@ -72,11 +72,32 @@ const ReadingRoom = () => {
         true
       );
     };
-
+    
     dollyCameraStop(); 
     const intervalId = setInterval(moveCamera, 50);
     setMoveIntervalId(intervalId);
   };
+  const dollyCameraDown = () => {
+  const moveAmount = 0.5;
+
+  const moveCamera = () => {
+    const cameraPosition = cameraControlRef.current._camera.position.toArray();
+    const targetPosition = cameraControlRef.current._target.toArray();
+
+    const newYCameraPosition = cameraPosition[1] - moveAmount;
+    const newYTargetPosition = targetPosition[1] - moveAmount;
+
+    cameraControlRef.current?.setLookAt(
+      cameraPosition[0], newYCameraPosition, cameraPosition[2], // new camera position
+      targetPosition[0], newYTargetPosition, targetPosition[2], // new target position
+      true
+    );
+  };
+
+  dollyCameraStop();
+  const intervalId = setInterval(moveCamera, 50);
+  setMoveIntervalId(intervalId);
+};
   const goToTablePosition = () => {
   const tablePosition = [
     10.065679205124855,
@@ -154,6 +175,12 @@ const ReadingRoom = () => {
           onPointerOver={() => dollyCameraRight()} 
           onPointerOut={() => dollyCameraStop()}
         ></div>
+        <div 
+          className="bottomSection" 
+          onPointerOver={() => dollyCameraDown()} 
+          onPointerOut={() => dollyCameraStop()}
+        ></div>
+
         <div className="readingroom">
           <Canvas>
             <CameraControls ref={cameraControlRef} smoothTime={0.8} />

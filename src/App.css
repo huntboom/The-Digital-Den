@@ -36,6 +36,13 @@
    width:10em;
    height:50em;
 }
+.bottomSection {
+  z-index:1;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:1em;
+}
 .overlayed{
    position:absolute; 
    z-index:1;
