@@ -207,7 +207,7 @@ const ReadingRoom = () => {
         ></div>
         <div className="readingroom">
           <Canvas>
-            <CameraControls ref={cameraControlRef} smoothTime={0.8} />
+            <CameraControls  mouseButtons={{}} ref={cameraControlRef} smoothTime={0.8} />
             <group position={[0, -0.6, 1.0]}>
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
