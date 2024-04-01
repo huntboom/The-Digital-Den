@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import ImageObject from './ImageObject.js';
 import Book3 from './Book3.js';
 import TextObject from './BookTitle.js';
@@ -6,27 +6,30 @@ import { updateBookText } from './store.js';
 import { useDispatch } from 'react-redux';
 import { Html } from '@react-three/drei';
 
-export default function BookGroup(props) {
+const BookGroup = React.memo(function BookGroup(props) {
   const ref = useRef();
   const dispatch = useDispatch();
 
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     const response = await fetch(`https://gutendex.com/books/?search=${props.title}`);
     const data = await response.json();
     const firstResult = data.results[0];
     const bookId = firstResult.id;
     console.log("this is the id: " + bookId);
+
     //txt version:
     const bookUrltxt = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '.txt';
+
     //html version:
     const bookUrl = '/api' + '/cache/epub/' + bookId + '/pg' + bookId + '-images.html';
+
     // example url for the html file "https://www.gutenberg.org/ebooks/1523.html.images"
     const bookUrlData = await fetch(bookUrl, { timeout: 600000 });
     const bookUrlResponse = await bookUrlData.text();
     const first1000Chars = bookUrlResponse;
 
     dispatch(updateBookText({ genre: props.genre, text: first1000Chars }));
-  };
+  }, [props.genre, props.title]);
 
   // Function to linearly interpolate between two values
   function lerp(start, end, alpha) {
@@ -41,7 +44,6 @@ export default function BookGroup(props) {
     function animate(now) {
       const timeElapsed = now - startTime;
       const alpha = Math.min(timeElapsed / duration, 1); // Ensure alpha is in the range [0, 1]
-
       ref.current.position.z = lerp(startZ, targetZ, alpha);
 
       if (alpha < 1) {
@@ -53,14 +55,14 @@ export default function BookGroup(props) {
     requestAnimationFrame(animate);
   }
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     console.log(props.title);
     handleSearch();
-    props.onClick(); 
-  };
+    props.onClick();
+  }, [handleSearch, props.onClick, props.title]);
 
   return (
-    <group position={props.position} scale={0.8} rotation={props.rotation} ref={ref} onClick={handleClick}
+    <group position={props.position} scale={0.8} rotation={props.rotation} ref={ref} onClick={handleClick} visible={true}
       onPointerOver={() => {
         smoothTransition(ref, 1.2, 500); // Transition to z=1.2 over 500 milliseconds
       }}
@@ -72,4 +74,6 @@ export default function BookGroup(props) {
       <TextObject title={props.title} position={[0, 0.05, 1.1016]} />
     </group>
   );
-}
+});
+
+export default BookGroup;

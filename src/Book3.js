@@ -14,7 +14,7 @@ export default function Book3(props) {
 
   const geometry = nodes.Book_0.geometry;
   const material = new THREE.MeshStandardMaterial({
-    color: new THREE.Color(Math.random() * 0.3, Math.random() * 0.3, Math.random() * 0.3),
+    color: new THREE.Color(0, 0, 0), // Set the color to solid black
   });
   return (
     <group ref={ref} /*  onPointerOver={() => (ref.current.position.z = 3.8)} onPointerOut={() => (ref.current.position.z = 3.4)}  */ {...props} dispose={null}>

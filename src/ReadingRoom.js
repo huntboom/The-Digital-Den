@@ -206,13 +206,13 @@ const ReadingRoom = () => {
           onPointerOut={() => dollyCameraStop()}
         ></div>
         <div className="readingroom">
-          <Canvas>
-            <CameraControls  mouseButtons={{}} ref={cameraControlRef} smoothTime={0.8} />
+          <Canvas frameloop="demand" camera={{ near: 0.1, far: 1000 }}>
+            <CameraControls  mouseButtons={{}} ref={cameraControlRef} smoothTime={0.8} updateDefaultCamera={true} regress={false} />
             <group position={[0, -0.6, 1.0]}>
               <Shelf position={[0, 0, 3.25]} scale={[5, 1, 1]} />
               <ambientLight />
               <Suspense>
-                <CompleteShelf onBookClick={goToTablePosition} genre="Mystery" position={[-1.7, 0.7, 2.2]} />
+                <CompleteShelf renderOrder={1} frustumCulled={false} onBookClick={goToTablePosition} genre="Mystery" position={[-1.7, 0.7, 2.2]} />
                 <CompleteShelf genre="Fantasy" position={[-1.7, 0.2, 2.2]} />
                 <CompleteShelf genre="Crime" position={[-1.7, -0.3, 2.2]} />
                 <CompleteShelf genre="Religion" position={[-1.7, -0.8, 2.2]} />
